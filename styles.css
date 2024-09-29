@@ -1,0 +1,285 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f4f8;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    height: 90vh;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.logo-container.animate {
+    animation: logoZoomIn 1s forwards, logoToCorner 1s forwards 1s;
+    opacity: 1;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.image-section {
+    width: 100%;
+    height: 100%;
+    background-image: url('dog.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.image-section.show {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.image-section.slide-right {
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: auto;
+    right: 0;
+}
+
+.login-container {
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    background-color: white;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.login-container.slide-left {
+    left: 0;
+    opacity: 1;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    font-size: 16px; 
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007BFF;
+    font-size: 14px;
+}
+
+
+.links {
+    margin-top: 10px;
+}
+
+.links a {
+    color: #007BFF;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: #0056b3;
+}
+
+
+.loading-spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+button.loading .button-text {
+    display: none;
+}
+
+button.loading .loading-spinner {
+    display: inline-block;
+}
+
+.image-section.shrink {
+    transform: scale(0);
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.logo-container.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 1s ease-in-out;
+}
+
+/* Add this to your existing media queries */
+@media (max-width: 768px) {
+    .logo-container.center {
+        transform: translate(-50%, -50%) scale(0.75);
+    }
+}
+
+@keyframes logoZoomIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes logoToCorner {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        top: 30px;
+        left: 30px;
+        transform: translate(0, 0) scale(0.75);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .image-section.slide-right {
+        width: 100%;
+        height: 40vh;
+    }
+
+    .login-container.slide-left {
+        width: 100%;
+        height: auto;
+        top: 40vh;
+    }
+
+    button {
+        padding: 10px; 
+        font-size: 14px; 
+    }
+
+    .login-container button {
+        margin-top: 20px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 60px; 
+        height: 60px; 
+    }
+
+    input[type="text"],
+    input[type="password"],
+    button {
+        padding: 8px; 
+        font-size: 14px; 
+    }
+
+    h2 {
+        font-size: 1.5em; 
+    }
+
+    .login-container {
+        align-items: flex-start; 
+    }
+}
